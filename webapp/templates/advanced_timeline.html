@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced dbt Timeline - {{ project_name }}</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .timeline-container {
+            background: transparent;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        
+        .advanced-timeline-svg {
+            background: transparent;
+            border-radius: 12px;
+            border: none;
+        }
+        
+        .time-axis {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .layer-label {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            fill: #333333;
+            font-weight: bold;
+        }
+        
+        .timeline-bar {
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-bar:hover {
+            stroke: white;
+            stroke-width: 2;
+            filter: brightness(1.2);
+        }
+        
+        .dependency-link {
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-controls {
+            min-width: 200px;
+            max-width: 250px;
+        }
+        
+        .timeline-controls input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        
+        .timeline-controls input[type="text"] {
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+        }
+        
+        .timeline-tooltip {
+            max-width: 300px;
+            line-height: 1.4;
+        }
+        
+        .performance-indicator {
+            filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
+        }
+        
+        .historical-overlay {
+            pointer-events: none;
+        }
+        
+        .model-details-panel {
+            background: var(--bs-dark);
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 400px;
+        }
+        
+        .layer-bg {
+            transition: all 0.3s ease;
+        }
+        
+        .sla-line {
+            filter: drop-shadow(0 0 2px rgba(220, 53, 69, 0.5));
+        }
+        
+        .legend {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 10px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stats-grid .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            border-radius: 15px !important;
+            padding: 25px !important;
+            text-align: center !important;
+            border: 3px solid #ffffff !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+            transition: all 0.3s ease !important;
+            margin: 15px 0 !important;
+            min-height: 120px !important;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stats-grid .stat-card:nth-child(1) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        }
+        
+        .stats-grid .stat-card:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+        }
+        
+        .stats-grid .stat-card:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+        }
+        
+        .stats-grid .stat-card:nth-child(4) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%) !important;
+        }
+        
+        .stats-grid .stat-value {
+            font-size: 3rem !important;
+            font-weight: 900 !important;
+            color: #ffffff !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5) !important;
+            margin-bottom: 10px !important;
+        }
+        
+        .stats-grid .stat-label {
+            font-size: 1.1rem !important;
+            color: #ffffff !important;
+            margin-top: 10px !important;
+            font-weight: 600 !important;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.4) !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1px !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid mt-4">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="text-light">
+                    <i class="fas fa-chart-gantt me-2"></i>
+                    Advanced dbt Timeline Analysis
+                </h1>
+                <p class="text-muted">Interactive visualization of model dependencies, performance, and execution flow</p>
+            </div>
+            <div class="col-auto">
+                <a href="/" class="btn btn-outline-light">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Project
+                </a>
+            </div>
+        </div>
+
+        <!-- Performance Statistics -->
+        <div class="stats-grid">
+            <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; border-radius: 15px !important; padding: 25px !important; text-align: center !important; border: 3px solid #ffffff !important; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important; min-height: 120px !important;">
+                <div class="stat-value" id="total-models" style="font-size: 3rem !important; font-weight: 900 !important; color: #ffffff !important; text-shadow: 2px 2px 4px rgba(0,0,0,0.5) !important; margin-bottom: 10px !important;">--</div>
+                <div class="stat-label" style="font-size: 1.1rem !important; color: #ffffff !important; margin-top: 10px !important; font-weight: 600 !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.4) !important; text-transform: uppercase !important; letter-spacing: 1px !important;">Total Models</div>
+            </div>
+            <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important; border-radius: 15px !important; padding: 25px !important; text-align: center !important; border: 3px solid #ffffff !important; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important; min-height: 120px !important;">
+                <div class="stat-value" id="total-time" style="font-size: 3rem !important; font-weight: 900 !important; color: #ffffff !important; text-shadow: 2px 2px 4px rgba(0,0,0,0.5) !important; margin-bottom: 10px !important;">--</div>
+                <div class="stat-label" style="font-size: 1.1rem !important; color: #ffffff !important; margin-top: 10px !important; font-weight: 600 !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.4) !important; text-transform: uppercase !important; letter-spacing: 1px !important;">Total Runtime</div>
+            </div>
+            <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important; border-radius: 15px !important; padding: 25px !important; text-align: center !important; border: 3px solid #ffffff !important; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important; min-height: 120px !important;">
+                <div class="stat-value" id="critical-models" style="font-size: 3rem !important; font-weight: 900 !important; color: #ffffff !important; text-shadow: 2px 2px 4px rgba(0,0,0,0.5) !important; margin-bottom: 10px !important;">--</div>
+                <div class="stat-label" style="font-size: 1.1rem !important; color: #ffffff !important; margin-top: 10px !important; font-weight: 600 !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.4) !important; text-transform: uppercase !important; letter-spacing: 1px !important;">Critical Models</div>
+            </div>
+            <div class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%) !important; border-radius: 15px !important; padding: 25px !important; text-align: center !important; border: 3px solid #ffffff !important; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important; min-height: 120px !important;">
+                <div class="stat-value" id="total-cost" style="font-size: 3rem !important; font-weight: 900 !important; color: #ffffff !important; text-shadow: 2px 2px 4px rgba(0,0,0,0.5) !important; margin-bottom: 10px !important;">--</div>
+                <div class="stat-label" style="font-size: 1.1rem !important; color: #ffffff !important; margin-top: 10px !important; font-weight: 600 !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.4) !important; text-transform: uppercase !important; letter-spacing: 1px !important;">Estimated Cost</div>
+            </div>
+        </div>
+
+        <!-- Timeline and Side Panels Layout -->
+        <div class="row">
+            <!-- Timeline Visualization -->
+            <div class="col-8">
+                <h5 class="mb-4">
+                    <i class="fas fa-timeline me-2"></i>
+                    Model Execution Timeline
+                </h5>
+                <div id="advanced-timeline" style="width: 100%; height: 700px;"></div>
+            </div>
+            
+            <!-- Side Panels -->
+            <div class="col-4">
+                <div class="sticky-top" style="top: 20px;">
+                    <!-- Model Details Panel -->
+                    <div class="card bg-dark border-secondary mb-3">
+                        <div class="card-header">
+                            <h6 class="mb-0">
+                                <i class="fas fa-info-circle me-2"></i>
+                                Model Details
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <div id="model-details">
+                                <div class="text-center text-muted py-4">
+                                    <i class="fas fa-mouse-pointer fa-2x mb-3"></i>
+                                    <p class="small">Click on a model in the timeline to view detailed information</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Performance Insights Panel -->
+                    <div class="card bg-dark border-secondary">
+                        <div class="card-header">
+                            <h6 class="mb-0">
+                                <i class="fas fa-lightbulb me-2"></i>
+                                Performance Insights
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <div id="performance-insights">
+                                <div class="alert alert-info mb-2 py-2">
+                                    <small><strong>Critical Path:</strong> Shows the longest execution sequence</small>
+                                </div>
+                                <div class="alert alert-warning mb-2 py-2">
+                                    <small><strong>Slow Models:</strong> Models taking > 2s may need optimization</small>
+                                </div>
+                                <div class="alert alert-success mb-0 py-2">
+                                    <small><strong>Historical View:</strong> Compare current vs average performance</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/advanced_timeline.js') }}"></script>
+    <script>
+        // Update statistics after timeline loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                if (window.timelineData && window.timelineData.nodes) {
+                    updateStatistics();
+                    generateInsights();
+                }
+            }, 1000);
+        });
+        
+        // Global variable to store timeline data
+        window.timelineData = null;
+        
+        function updateStatistics() {
+            if (!window.timelineData || !window.timelineData.nodes) {
+                console.log('Timeline data not available yet');
+                return;
+            }
+            
+            const data = window.timelineData;
+            const executionModels = data.nodes.filter(n => n.layer !== 'source');
+            
+            // Total models
+            document.getElementById('total-models').textContent = executionModels.length;
+            
+            // Total runtime - calculate the actual pipeline duration
+            if (executionModels.length > 0) {
+                const maxEndTime = Math.max(...executionModels.map(n => n.startTime + n.executionTime));
+                document.getElementById('total-time').textContent = maxEndTime.toFixed(1) + 's';
+            } else {
+                document.getElementById('total-time').textContent = '0s';
+            }
+            
+            // Critical models - count models with execution time > 5s or marked as critical
+            const criticalModels = executionModels.filter(n => 
+                n.executionTime > 5 || n.performanceStatus === 'critical'
+            ).length;
+            document.getElementById('critical-models').textContent = criticalModels;
+            
+            // Estimated cost - calculate based on execution time and approximate warehouse costs
+            const totalCost = executionModels.reduce((sum, model) => {
+                // Estimate cost based on execution time (rough calculation: $0.02 per second)
+                const estimatedCost = model.executionTime * 0.02;
+                return sum + estimatedCost;
+            }, 0);
+            document.getElementById('total-cost').textContent = '$' + totalCost.toFixed(3);
+        }
+        
+        function generateInsights() {
+            if (!window.timelineData || !window.timelineData.nodes) {
+                console.log('Timeline data not available for insights');
+                return;
+            }
+            const data = window.timelineData;
+            const executionModels = data.nodes.filter(n => n.layer !== 'source');
+            
+            // Bottleneck analysis
+            const slowModels = executionModels
+                .filter(n => n.executionTime > 2)
+                .sort((a, b) => b.executionTime - a.executionTime)
+                .slice(0, 3);
+                
+            const bottleneckHtml = slowModels.length > 0 ? 
+                slowModels.map(model => `
+                    <div class="alert alert-warning py-2 mb-2">
+                        <small><strong>${model.name}:</strong> ${model.executionTime}s execution time</small>
+                    </div>
+                `).join('') :
+                '<div class="text-success">No significant bottlenecks detected!</div>';
+                
+            document.getElementById('bottleneck-analysis').innerHTML = bottleneckHtml;
+            
+            // Optimization recommendations
+            const recommendations = [];
+            
+            if (slowModels.length > 0) {
+                recommendations.push("Consider optimizing SQL for models with > 2s execution time");
+            }
+            
+            const costlyModels = executionModels.filter(n => (n.costUSD || 0) > 0.1);
+            if (costlyModels.length > 0) {
+                recommendations.push("Review expensive models for cost optimization opportunities");
+            }
+            
+            const criticalPathModels = executionModels.filter(n => window.timeline.criticalPath.has(n.id));
+            if (criticalPathModels.length > 5) {
+                recommendations.push("Consider parallelizing critical path models");
+            }
+            
+            if (recommendations.length === 0) {
+                recommendations.push("Performance looks good! Consider monitoring for future optimizations");
+            }
+            
+            const recommendationsHtml = recommendations.map(rec => `
+                <div class="alert alert-info py-2 mb-2">
+                    <small><i class="fas fa-lightbulb me-2"></i>${rec}</small>
+                </div>
+            `).join('');
+            
+            document.getElementById('optimization-recommendations').innerHTML = recommendationsHtml;
+        }
+    </script>
+</body>
+</html>
