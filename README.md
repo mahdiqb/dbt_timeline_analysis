@@ -4,7 +4,9 @@ A comprehensive dbt model lineage timeline visualization inspired by Airbnb's da
 
 The app relies on the dbt package [dbt-artifacts](https://hub.getdbt.com/brooklyn-data/dbt_artifacts/latest/) and expects its output (specifically the tables `dim_dbt__models` and `fct_dbt__model_executions`) to be available in the chosen schema.
 
-Created with Replit.
+Built with Replit.
+
+![screencapture-ebcd8dbd-6918-4f04-a533-7b9e1f7eb25a-00-y7grojt0qtf8-kirk-replit-dev-3001-2025-06-22-18_55_18](https://github.com/user-attachments/assets/3763d2e9-e6c1-4ca8-8b81-f8d0ceaab718)
 
 ## Features
 
