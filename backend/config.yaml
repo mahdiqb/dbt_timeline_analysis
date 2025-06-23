@@ -1,0 +1,3 @@
+database:
+  url: ${DATABASE_URL}  # Will be replaced with environment variable
+  schema: public        # Default schema, can be changed as needed. Should point to the schema where the dbt-artifacts tables are located.
