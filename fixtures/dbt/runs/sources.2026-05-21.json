@@ -1,0 +1,177 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-21T02:00:01.111Z",
+    "invocation_id": "run-2026-05-21-freshness",
+    "dbt_version": "1.8.7"
+  },
+  "results": [
+    {
+      "unique_id": "source.marketplace.raw.events",
+      "status": "pass",
+      "max_loaded_at": "2026-05-21T00:21:33.032Z",
+      "snapshotted_at": "2026-05-21T00:21:33.032Z",
+      "execution_time": 234,
+      "adapter_response": {
+        "rows_affected": 4582788
+      },
+      "criteria": {
+        "warn_after": null,
+        "error_after": null
+      },
+      "timing": [
+        {
+          "name": "execute",
+          "started_at": "2026-05-21T00:17:39.198Z",
+          "completed_at": "2026-05-21T00:21:33.032Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "source.marketplace.raw.bookings",
+      "status": "pass",
+      "max_loaded_at": "2026-05-21T01:08:55.914Z",
+      "snapshotted_at": "2026-05-21T01:08:55.914Z",
+      "execution_time": 291,
+      "adapter_response": {
+        "rows_affected": 4672653
+      },
+      "criteria": {
+        "warn_after": null,
+        "error_after": null
+      },
+      "timing": [
+        {
+          "name": "execute",
+          "started_at": "2026-05-21T01:04:04.439Z",
+          "completed_at": "2026-05-21T01:08:55.914Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "source.marketplace.raw.listings",
+      "status": "pass",
+      "max_loaded_at": "2026-05-21T00:49:42.144Z",
+      "snapshotted_at": "2026-05-21T00:49:42.144Z",
+      "execution_time": 213,
+      "adapter_response": {
+        "rows_affected": 4177212
+      },
+      "criteria": {
+        "warn_after": null,
+        "error_after": null
+      },
+      "timing": [
+        {
+          "name": "execute",
+          "started_at": "2026-05-21T00:46:09.046Z",
+          "completed_at": "2026-05-21T00:49:42.144Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "source.marketplace.raw.users",
+      "status": "pass",
+      "max_loaded_at": "2026-05-21T00:54:00.675Z",
+      "snapshotted_at": "2026-05-21T00:54:00.675Z",
+      "execution_time": 180,
+      "adapter_response": {
+        "rows_affected": 5358443
+      },
+      "criteria": {
+        "warn_after": null,
+        "error_after": null
+      },
+      "timing": [
+        {
+          "name": "execute",
+          "started_at": "2026-05-21T00:51:01.049Z",
+          "completed_at": "2026-05-21T00:54:00.675Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "source.marketplace.raw.payments",
+      "status": "pass",
+      "max_loaded_at": "2026-05-21T02:00:01.111Z",
+      "snapshotted_at": "2026-05-21T02:00:01.111Z",
+      "execution_time": 376,
+      "adapter_response": {
+        "rows_affected": 5554391
+      },
+      "criteria": {
+        "warn_after": null,
+        "error_after": null
+      },
+      "timing": [
+        {
+          "name": "execute",
+          "started_at": "2026-05-21T01:53:44.708Z",
+          "completed_at": "2026-05-21T02:00:01.111Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "source.marketplace.raw.reviews",
+      "status": "pass",
+      "max_loaded_at": "2026-05-21T01:43:15.164Z",
+      "snapshotted_at": "2026-05-21T01:43:15.164Z",
+      "execution_time": 249,
+      "adapter_response": {
+        "rows_affected": 3361993
+      },
+      "criteria": {
+        "warn_after": null,
+        "error_after": null
+      },
+      "timing": [
+        {
+          "name": "execute",
+          "started_at": "2026-05-21T01:39:05.950Z",
+          "completed_at": "2026-05-21T01:43:15.164Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "source.marketplace.raw.messages",
+      "status": "pass",
+      "max_loaded_at": "2026-05-21T01:19:00.546Z",
+      "snapshotted_at": "2026-05-21T01:19:00.546Z",
+      "execution_time": 292,
+      "adapter_response": {
+        "rows_affected": 4262457
+      },
+      "criteria": {
+        "warn_after": null,
+        "error_after": null
+      },
+      "timing": [
+        {
+          "name": "execute",
+          "started_at": "2026-05-21T01:14:08.239Z",
+          "completed_at": "2026-05-21T01:19:00.546Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "source.marketplace.raw.search_logs",
+      "status": "pass",
+      "max_loaded_at": "2026-05-21T01:39:41.161Z",
+      "snapshotted_at": "2026-05-21T01:39:41.161Z",
+      "execution_time": 249,
+      "adapter_response": {
+        "rows_affected": 3425006
+      },
+      "criteria": {
+        "warn_after": null,
+        "error_after": null
+      },
+      "timing": [
+        {
+          "name": "execute",
+          "started_at": "2026-05-21T01:35:32.093Z",
+          "completed_at": "2026-05-21T01:39:41.161Z"
+        }
+      ]
+    }
+  ]
+}

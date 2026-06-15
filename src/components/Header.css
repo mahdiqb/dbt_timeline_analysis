@@ -1,0 +1,218 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: var(--header-h);
+  flex: none;
+  padding: 0 20px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  z-index: 20;
+}
+
+/* Brand --------------------------------------------------------------- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.brand__mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  font-weight: var(--fw-bold);
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+  box-shadow: 0 2px 8px rgba(224, 36, 94, 0.32);
+}
+
+.brand__title {
+  font-size: var(--text-lg);
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.brand__sub {
+  font-size: var(--text-sm);
+  color: var(--ink-3);
+  line-height: 1.2;
+}
+
+.header__spacer {
+  flex: 1;
+}
+
+/* Run health ---------------------------------------------------------- */
+.run-health {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-right: 18px;
+  border-right: 1px solid var(--border);
+}
+
+.run-health__lead {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.run-health__lead .tnum {
+  font-size: var(--text-xl);
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.02em;
+}
+
+.run-health__of {
+  font-size: var(--text-base);
+  color: var(--ink-3);
+  font-weight: var(--fw-medium);
+}
+
+.run-health__label {
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  margin-left: 2px;
+}
+
+.run-health__chips {
+  display: flex;
+  gap: 6px;
+}
+
+.run-health__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--r-pill);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+}
+
+.run-health__chip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--r-pill);
+}
+
+/* Date stepper -------------------------------------------------------- */
+.date-stepper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.date-stepper__btn {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-sm);
+  color: var(--ink-2);
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.date-stepper__btn:hover:not(:disabled) {
+  background: var(--hover);
+  color: var(--ink);
+}
+
+.date-stepper__btn:disabled {
+  color: var(--ink-4);
+  cursor: not-allowed;
+}
+
+.date-stepper__label {
+  min-width: 116px;
+  text-align: center;
+  padding: 0 4px;
+}
+
+.date-stepper__date {
+  display: block;
+  font-size: var(--text-md);
+  font-weight: var(--fw-semibold);
+  letter-spacing: -0.01em;
+}
+
+.date-stepper__year {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+.date-stepper__latest {
+  margin-left: 6px;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: var(--r-sm);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--accent-contrast);
+  background: var(--accent);
+  transition: opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.date-stepper__latest:hover {
+  opacity: 0.88;
+}
+
+.date-stepper__latest:active {
+  transform: scale(0.97);
+}
+
+/* Refresh ------------------------------------------------------------- */
+.refresh {
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
+  padding-left: 14px;
+  border-left: 1px solid var(--border);
+}
+
+.refresh__btn {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-sm);
+  color: var(--ink-2);
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+.refresh__btn:hover:not(:disabled) {
+  background: var(--hover);
+  color: var(--ink);
+}
+
+.refresh__btn:disabled {
+  cursor: progress;
+}
+
+.refresh__btn.is-error {
+  color: var(--late);
+}
+
+.refresh__btn.is-loading svg {
+  animation: refresh-spin 0.7s linear infinite;
+}
+
+@keyframes refresh-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .refresh__btn.is-loading svg {
+    animation-duration: 1.6s;
+  }
+}

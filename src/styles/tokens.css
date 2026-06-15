@@ -1,0 +1,103 @@
+/* Design tokens — the single source of truth for color, type, space, depth. */
+
+:root {
+  /* ---- Type ------------------------------------------------------------ */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas,
+    monospace;
+
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 13px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 26px;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* ---- Neutral ink + surfaces (cool grays) ----------------------------- */
+  --ink: #1c1c1e;
+  --ink-2: #5f636b;
+  --ink-3: #8a8f99;
+  --ink-4: #b4b8c0;
+
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --panel-2: #fbfbfd;
+  --panel-inset: #f2f3f6;
+
+  --border: #e9eaee;
+  --border-strong: #dcdee4;
+  --hover: #f3f4f7;
+  --hover-strong: #eceef2;
+
+  /* ---- Brand + interaction --------------------------------------------- */
+  --brand-1: #ff5a5f; /* Rausch */
+  --brand-2: #e0245e;
+  --accent: #1c1c1e; /* primary actions read as confident near-black */
+  --accent-contrast: #ffffff;
+  --focus: #2f6df6;
+  --focus-ring: rgba(47, 109, 246, 0.32);
+
+  /* ---- Semantic status -------------------------------------------------- */
+  --on-time: #1f9d6b;
+  --on-time-bg: #e7f5ee;
+  --on-time-soft: #b9e3cd;
+
+  --behind: #d9912b;
+  --behind-bg: #fbf0db;
+  --behind-soft: #f1d59a;
+
+  --late: #e1463f;
+  --late-bg: #fce8e7;
+  --late-soft: #f4b9b6;
+
+  --error: #b11f2a;
+  --error-bg: #f9e3e4;
+
+  --skipped: #7c8090;
+  --skipped-bg: #eef0f3;
+
+  /* neutral bar / "typical" overlays */
+  --bar-neutral: #c7cad2;
+  --typical-band: #e9ebf0;
+  --typical-line: #aab0bd;
+  --sla-line: #e1463f;
+
+  /* ---- Layer accents (for the lineage layers) -------------------------- */
+  --layer-source: #8a8f99;
+  --layer-staging: #5b8def;
+  --layer-intermediate: #9b6dde;
+  --layer-marts: #1f9d6b;
+
+  /* ---- Radius ----------------------------------------------------------- */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --r-pill: 999px;
+
+  /* ---- Depth ------------------------------------------------------------ */
+  --shadow-xs: 0 1px 2px rgba(20, 22, 28, 0.05);
+  --shadow-sm: 0 1px 3px rgba(20, 22, 28, 0.06), 0 1px 2px rgba(20, 22, 28, 0.04);
+  --shadow-md: 0 4px 12px rgba(20, 22, 28, 0.08), 0 1px 3px rgba(20, 22, 28, 0.05);
+  --shadow-lg: 0 12px 32px rgba(20, 22, 28, 0.14), 0 3px 8px rgba(20, 22, 28, 0.08);
+  --shadow-pop: 0 8px 28px rgba(20, 22, 28, 0.18);
+
+  /* ---- Motion ----------------------------------------------------------- */
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 120ms;
+  --dur: 200ms;
+  --dur-slow: 360ms;
+
+  /* ---- Layout ----------------------------------------------------------- */
+  --sidebar-w: 312px;
+  --header-h: 60px;
+}

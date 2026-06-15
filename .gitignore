@@ -1,0 +1,21 @@
+# dependencies
+node_modules
+
+# build output
+dist
+dist-server
+*.tsbuildinfo
+
+# logs & os cruft
+*.log
+.DS_Store
+
+# local agent settings (launch.json is shared; this one is personal)
+.claude/settings.local.json
+
+# user config & data (provided at runtime, not committed)
+config.yml
+config.local.yml
+history
+artifacts
+my-project

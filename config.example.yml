@@ -1,0 +1,34 @@
+# dbt SLA Tracker — configuration
+#
+# Copy to `config.yml` and edit. Every key is optional: with no config at all,
+# the tool serves its built-in synthetic demo. The server looks for this file
+# at $CONFIG_FILE, then /config/config.yml, then <data dir>/config.yml.
+
+# Where your dated dbt artifacts live. Two layouts are accepted:
+#   • folder-per-run — a snapshot of target/ per run, in dirs named by date:
+#       history/2026-05-30/{manifest.json, run_results.json, sources.json}
+#   • flat — a shared manifest plus dated run files:
+#       history/manifest.json + history/runs/run_results.<date>.json (+ sources.<date>.json)
+# Relative paths resolve from THIS file's location.
+artifacts: ./history
+
+# Display name shown in the header (defaults to your manifest's project name).
+project_name: Marketplace Analytics
+
+# Load only the N most recent runs (default: all that are found).
+max_runs: 30
+
+# Port the server listens on (the PORT env var overrides this).
+port: 8080
+
+# SLAs. dbt has no native SLA, so declare them here — no need to touch your dbt
+# project. Key by model name (or full unique_id); value is the target landing
+# time as "HH:MM" UTC. These add to / override anything set via dbt meta.sla.
+slas:
+  mart_revenue_daily: "05:00"
+  mart_executive_summary: "05:30"
+  fct_payments: "04:00"
+
+# Owner overrides (optional), same keying. Shown in the UI.
+owners:
+  mart_revenue_daily: Data Platform

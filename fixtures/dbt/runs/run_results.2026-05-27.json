@@ -1,0 +1,559 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-27T03:16:18.939Z",
+    "invocation_id": "run-2026-05-27",
+    "dbt_version": "1.8.7"
+  },
+  "results": [
+    {
+      "unique_id": "model.marketplace.stg_events",
+      "status": "success",
+      "execution_time": 630,
+      "adapter_response": {
+        "rows_affected": 4928439
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T00:43:10.501Z",
+          "completed_at": "2026-05-27T00:43:10.501Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T00:43:10.501Z",
+          "completed_at": "2026-05-27T00:53:40.391Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.stg_bookings",
+      "status": "success",
+      "execution_time": 353,
+      "adapter_response": {
+        "rows_affected": 2849902
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T01:17:12.028Z",
+          "completed_at": "2026-05-27T01:17:12.028Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T01:17:12.028Z",
+          "completed_at": "2026-05-27T01:23:05.039Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.stg_listings",
+      "status": "success",
+      "execution_time": 406,
+      "adapter_response": {
+        "rows_affected": 3244852
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T00:50:01.725Z",
+          "completed_at": "2026-05-27T00:50:01.725Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T00:50:01.725Z",
+          "completed_at": "2026-05-27T00:56:47.449Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.stg_users",
+      "status": "success",
+      "execution_time": 353,
+      "adapter_response": {
+        "rows_affected": 3652972
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T00:43:59.176Z",
+          "completed_at": "2026-05-27T00:43:59.176Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T00:43:59.176Z",
+          "completed_at": "2026-05-27T00:49:52.118Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.stg_payments",
+      "status": "success",
+      "execution_time": 393,
+      "adapter_response": {
+        "rows_affected": 3678494
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T01:48:41.127Z",
+          "completed_at": "2026-05-27T01:48:41.127Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T01:48:41.127Z",
+          "completed_at": "2026-05-27T01:55:14.237Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.stg_reviews",
+      "status": "success",
+      "execution_time": 415,
+      "adapter_response": {
+        "rows_affected": 2232565
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T01:09:29.393Z",
+          "completed_at": "2026-05-27T01:09:29.393Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T01:09:29.393Z",
+          "completed_at": "2026-05-27T01:16:24.454Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.stg_messages",
+      "status": "success",
+      "execution_time": 214,
+      "adapter_response": {
+        "rows_affected": 2708670
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T01:08:37.075Z",
+          "completed_at": "2026-05-27T01:08:37.075Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T01:08:37.075Z",
+          "completed_at": "2026-05-27T01:12:10.908Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.stg_search",
+      "status": "success",
+      "execution_time": 606,
+      "adapter_response": {
+        "rows_affected": 2644816
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T01:35:51.746Z",
+          "completed_at": "2026-05-27T01:35:51.746Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T01:35:51.746Z",
+          "completed_at": "2026-05-27T01:45:58.018Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.int_booking_events",
+      "status": "success",
+      "execution_time": 600,
+      "adapter_response": {
+        "rows_affected": 1288797
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T01:27:10.329Z",
+          "completed_at": "2026-05-27T01:27:10.329Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T01:27:10.329Z",
+          "completed_at": "2026-05-27T01:37:10.392Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.int_listing_metrics",
+      "status": "success",
+      "execution_time": 735,
+      "adapter_response": {
+        "rows_affected": 1222537
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T01:18:11.352Z",
+          "completed_at": "2026-05-27T01:18:11.352Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T01:18:11.352Z",
+          "completed_at": "2026-05-27T01:30:26.390Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.int_user_sessions",
+      "status": "success",
+      "execution_time": 998,
+      "adapter_response": {
+        "rows_affected": 1180175
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T01:50:20.261Z",
+          "completed_at": "2026-05-27T01:50:20.261Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T01:50:20.261Z",
+          "completed_at": "2026-05-27T02:06:57.886Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.int_payments_enriched",
+      "status": "success",
+      "execution_time": 1082,
+      "adapter_response": {
+        "rows_affected": 1438803
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T02:00:44.161Z",
+          "completed_at": "2026-05-27T02:00:44.161Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T02:00:44.161Z",
+          "completed_at": "2026-05-27T02:18:46.368Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.int_host_performance",
+      "status": "success",
+      "execution_time": 1173,
+      "adapter_response": {
+        "rows_affected": 894063
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T01:23:46.034Z",
+          "completed_at": "2026-05-27T01:23:46.034Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T01:23:46.034Z",
+          "completed_at": "2026-05-27T01:43:19.065Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.int_search_ranking",
+      "status": "success",
+      "execution_time": 1065,
+      "adapter_response": {
+        "rows_affected": 1712885
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T01:47:26.887Z",
+          "completed_at": "2026-05-27T01:47:26.887Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T01:47:26.887Z",
+          "completed_at": "2026-05-27T02:05:11.678Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.int_messaging_health",
+      "status": "success",
+      "execution_time": 486,
+      "adapter_response": {
+        "rows_affected": 1301000
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T01:17:59.358Z",
+          "completed_at": "2026-05-27T01:17:59.358Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T01:17:59.358Z",
+          "completed_at": "2026-05-27T01:26:05.334Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.int_funnel",
+      "status": "success",
+      "execution_time": 1203,
+      "adapter_response": {
+        "rows_affected": 1079841
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T01:49:48.415Z",
+          "completed_at": "2026-05-27T01:49:48.415Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T01:49:48.415Z",
+          "completed_at": "2026-05-27T02:09:51.913Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.fct_payments",
+      "status": "success",
+      "execution_time": 477,
+      "adapter_response": {
+        "rows_affected": 469740
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T02:21:14.224Z",
+          "completed_at": "2026-05-27T02:21:14.224Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T02:21:14.224Z",
+          "completed_at": "2026-05-27T02:29:11.199Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.fct_bookings",
+      "status": "success",
+      "execution_time": 1618,
+      "adapter_response": {
+        "rows_affected": 424935
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T02:19:56.138Z",
+          "completed_at": "2026-05-27T02:19:56.138Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T02:19:56.138Z",
+          "completed_at": "2026-05-27T02:46:54.300Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.fct_search",
+      "status": "success",
+      "execution_time": 965,
+      "adapter_response": {
+        "rows_affected": 522673
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T02:11:10.245Z",
+          "completed_at": "2026-05-27T02:11:10.245Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T02:11:10.245Z",
+          "completed_at": "2026-05-27T02:27:14.982Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.dim_listings",
+      "status": "success",
+      "execution_time": 705,
+      "adapter_response": {
+        "rows_affected": 542254
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T01:44:54.282Z",
+          "completed_at": "2026-05-27T01:44:54.282Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T01:44:54.282Z",
+          "completed_at": "2026-05-27T01:56:39.424Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.dim_users",
+      "status": "success",
+      "execution_time": 689,
+      "adapter_response": {
+        "rows_affected": 399121
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T02:08:24.466Z",
+          "completed_at": "2026-05-27T02:08:24.466Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T02:08:24.466Z",
+          "completed_at": "2026-05-27T02:19:53.632Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.mart_revenue_daily",
+      "status": "success",
+      "execution_time": 917,
+      "adapter_response": {
+        "rows_affected": 422286
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T02:50:34.889Z",
+          "completed_at": "2026-05-27T02:50:34.889Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T02:50:34.889Z",
+          "completed_at": "2026-05-27T03:05:51.719Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.mart_host_dashboard",
+      "status": "success",
+      "execution_time": 904,
+      "adapter_response": {
+        "rows_affected": 476949
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T02:50:13.417Z",
+          "completed_at": "2026-05-27T02:50:13.417Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T02:50:13.417Z",
+          "completed_at": "2026-05-27T03:05:17.771Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.mart_marketplace_health",
+      "status": "success",
+      "execution_time": 853,
+      "adapter_response": {
+        "rows_affected": 594074
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T02:31:01.073Z",
+          "completed_at": "2026-05-27T02:31:01.073Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T02:31:01.073Z",
+          "completed_at": "2026-05-27T02:45:13.901Z"
+        }
+      ]
+    },
+    {
+      "unique_id": "model.marketplace.mart_executive_summary",
+      "status": "success",
+      "execution_time": 555,
+      "adapter_response": {
+        "rows_affected": 548284
+      },
+      "message": null,
+      "failures": null,
+      "timing": [
+        {
+          "name": "compile",
+          "started_at": "2026-05-27T03:07:03.872Z",
+          "completed_at": "2026-05-27T03:07:03.872Z"
+        },
+        {
+          "name": "execute",
+          "started_at": "2026-05-27T03:07:03.872Z",
+          "completed_at": "2026-05-27T03:16:18.939Z"
+        }
+      ]
+    }
+  ]
+}

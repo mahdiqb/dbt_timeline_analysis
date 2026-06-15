@@ -1,0 +1,1100 @@
+{
+  "metadata": {
+    "project_name": "marketplace",
+    "adapter_type": "snowflake",
+    "dbt_version": "1.8.7"
+  },
+  "nodes": {
+    "model.marketplace.stg_events": {
+      "unique_id": "model.marketplace.stg_events",
+      "resource_type": "model",
+      "name": "stg_events",
+      "schema": "staging",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "staging",
+        "stg_events"
+      ],
+      "path": "staging/stg_events.sql",
+      "original_file_path": "models/staging/stg_events.sql",
+      "tags": [
+        "staging"
+      ],
+      "description": "Cleaned, typed clickstream events.",
+      "config": {
+        "materialized": "view",
+        "meta": {
+          "owner": "Core Data"
+        },
+        "tags": [
+          "staging"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "source.marketplace.raw.events"
+        ]
+      }
+    },
+    "model.marketplace.stg_bookings": {
+      "unique_id": "model.marketplace.stg_bookings",
+      "resource_type": "model",
+      "name": "stg_bookings",
+      "schema": "staging",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "staging",
+        "stg_bookings"
+      ],
+      "path": "staging/stg_bookings.sql",
+      "original_file_path": "models/staging/stg_bookings.sql",
+      "tags": [
+        "staging"
+      ],
+      "description": "Cleaned booking transactions.",
+      "config": {
+        "materialized": "view",
+        "meta": {
+          "owner": "Payments"
+        },
+        "tags": [
+          "staging"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "source.marketplace.raw.bookings"
+        ]
+      }
+    },
+    "model.marketplace.stg_listings": {
+      "unique_id": "model.marketplace.stg_listings",
+      "resource_type": "model",
+      "name": "stg_listings",
+      "schema": "staging",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "staging",
+        "stg_listings"
+      ],
+      "path": "staging/stg_listings.sql",
+      "original_file_path": "models/staging/stg_listings.sql",
+      "tags": [
+        "staging"
+      ],
+      "description": "Cleaned listing inventory.",
+      "config": {
+        "materialized": "view",
+        "meta": {
+          "owner": "Marketplace"
+        },
+        "tags": [
+          "staging"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "source.marketplace.raw.listings"
+        ]
+      }
+    },
+    "model.marketplace.stg_users": {
+      "unique_id": "model.marketplace.stg_users",
+      "resource_type": "model",
+      "name": "stg_users",
+      "schema": "staging",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "staging",
+        "stg_users"
+      ],
+      "path": "staging/stg_users.sql",
+      "original_file_path": "models/staging/stg_users.sql",
+      "tags": [
+        "staging"
+      ],
+      "description": "Cleaned user accounts.",
+      "config": {
+        "materialized": "view",
+        "meta": {
+          "owner": "Core Data"
+        },
+        "tags": [
+          "staging"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "source.marketplace.raw.users"
+        ]
+      }
+    },
+    "model.marketplace.stg_payments": {
+      "unique_id": "model.marketplace.stg_payments",
+      "resource_type": "model",
+      "name": "stg_payments",
+      "schema": "staging",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "staging",
+        "stg_payments"
+      ],
+      "path": "staging/stg_payments.sql",
+      "original_file_path": "models/staging/stg_payments.sql",
+      "tags": [
+        "staging"
+      ],
+      "description": "Cleaned settlement records.",
+      "config": {
+        "materialized": "view",
+        "meta": {
+          "owner": "Payments"
+        },
+        "tags": [
+          "staging"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "source.marketplace.raw.payments"
+        ]
+      }
+    },
+    "model.marketplace.stg_reviews": {
+      "unique_id": "model.marketplace.stg_reviews",
+      "resource_type": "model",
+      "name": "stg_reviews",
+      "schema": "staging",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "staging",
+        "stg_reviews"
+      ],
+      "path": "staging/stg_reviews.sql",
+      "original_file_path": "models/staging/stg_reviews.sql",
+      "tags": [
+        "staging"
+      ],
+      "description": "Cleaned reviews.",
+      "config": {
+        "materialized": "view",
+        "meta": {
+          "owner": "Marketplace"
+        },
+        "tags": [
+          "staging"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "source.marketplace.raw.reviews"
+        ]
+      }
+    },
+    "model.marketplace.stg_messages": {
+      "unique_id": "model.marketplace.stg_messages",
+      "resource_type": "model",
+      "name": "stg_messages",
+      "schema": "staging",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "staging",
+        "stg_messages"
+      ],
+      "path": "staging/stg_messages.sql",
+      "original_file_path": "models/staging/stg_messages.sql",
+      "tags": [
+        "staging"
+      ],
+      "description": "Cleaned messaging threads.",
+      "config": {
+        "materialized": "view",
+        "meta": {
+          "owner": "Marketplace"
+        },
+        "tags": [
+          "staging"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "source.marketplace.raw.messages"
+        ]
+      }
+    },
+    "model.marketplace.stg_search": {
+      "unique_id": "model.marketplace.stg_search",
+      "resource_type": "model",
+      "name": "stg_search",
+      "schema": "staging",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "staging",
+        "stg_search"
+      ],
+      "path": "staging/stg_search.sql",
+      "original_file_path": "models/staging/stg_search.sql",
+      "tags": [
+        "staging"
+      ],
+      "description": "Cleaned search impression logs.",
+      "config": {
+        "materialized": "view",
+        "meta": {
+          "owner": "Search"
+        },
+        "tags": [
+          "staging"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "source.marketplace.raw.search_logs"
+        ]
+      }
+    },
+    "model.marketplace.int_booking_events": {
+      "unique_id": "model.marketplace.int_booking_events",
+      "resource_type": "model",
+      "name": "int_booking_events",
+      "schema": "intermediate",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "intermediate",
+        "int_booking_events"
+      ],
+      "path": "intermediate/int_booking_events.sql",
+      "original_file_path": "models/intermediate/int_booking_events.sql",
+      "tags": [
+        "intermediate"
+      ],
+      "description": "Bookings joined to the events that drove them.",
+      "config": {
+        "materialized": "table",
+        "meta": {
+          "owner": "Payments"
+        },
+        "tags": [
+          "intermediate"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.stg_bookings",
+          "model.marketplace.stg_events"
+        ]
+      }
+    },
+    "model.marketplace.int_listing_metrics": {
+      "unique_id": "model.marketplace.int_listing_metrics",
+      "resource_type": "model",
+      "name": "int_listing_metrics",
+      "schema": "intermediate",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "intermediate",
+        "int_listing_metrics"
+      ],
+      "path": "intermediate/int_listing_metrics.sql",
+      "original_file_path": "models/intermediate/int_listing_metrics.sql",
+      "tags": [
+        "intermediate"
+      ],
+      "description": "Per-listing quality and review metrics.",
+      "config": {
+        "materialized": "table",
+        "meta": {
+          "owner": "Marketplace"
+        },
+        "tags": [
+          "intermediate"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.stg_listings",
+          "model.marketplace.stg_reviews"
+        ]
+      }
+    },
+    "model.marketplace.int_user_sessions": {
+      "unique_id": "model.marketplace.int_user_sessions",
+      "resource_type": "model",
+      "name": "int_user_sessions",
+      "schema": "intermediate",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "intermediate",
+        "int_user_sessions"
+      ],
+      "path": "intermediate/int_user_sessions.sql",
+      "original_file_path": "models/intermediate/int_user_sessions.sql",
+      "tags": [
+        "intermediate"
+      ],
+      "description": "Sessionized user activity.",
+      "config": {
+        "materialized": "table",
+        "meta": {
+          "owner": "Core Data"
+        },
+        "tags": [
+          "intermediate"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.stg_events",
+          "model.marketplace.stg_users",
+          "model.marketplace.stg_search"
+        ]
+      }
+    },
+    "model.marketplace.int_payments_enriched": {
+      "unique_id": "model.marketplace.int_payments_enriched",
+      "resource_type": "model",
+      "name": "int_payments_enriched",
+      "schema": "intermediate",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "intermediate",
+        "int_payments_enriched"
+      ],
+      "path": "intermediate/int_payments_enriched.sql",
+      "original_file_path": "models/intermediate/int_payments_enriched.sql",
+      "tags": [
+        "intermediate"
+      ],
+      "description": "Settlements enriched with booking context.",
+      "config": {
+        "materialized": "table",
+        "meta": {
+          "owner": "Payments"
+        },
+        "tags": [
+          "intermediate"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.stg_payments",
+          "model.marketplace.stg_bookings"
+        ]
+      }
+    },
+    "model.marketplace.int_host_performance": {
+      "unique_id": "model.marketplace.int_host_performance",
+      "resource_type": "model",
+      "name": "int_host_performance",
+      "schema": "intermediate",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "intermediate",
+        "int_host_performance"
+      ],
+      "path": "intermediate/int_host_performance.sql",
+      "original_file_path": "models/intermediate/int_host_performance.sql",
+      "tags": [
+        "intermediate"
+      ],
+      "description": "Host-level performance roll-up (heavy join).",
+      "config": {
+        "materialized": "table",
+        "meta": {
+          "owner": "Marketplace"
+        },
+        "tags": [
+          "intermediate"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.stg_listings",
+          "model.marketplace.stg_bookings",
+          "model.marketplace.stg_reviews"
+        ]
+      }
+    },
+    "model.marketplace.int_search_ranking": {
+      "unique_id": "model.marketplace.int_search_ranking",
+      "resource_type": "model",
+      "name": "int_search_ranking",
+      "schema": "intermediate",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "intermediate",
+        "int_search_ranking"
+      ],
+      "path": "intermediate/int_search_ranking.sql",
+      "original_file_path": "models/intermediate/int_search_ranking.sql",
+      "tags": [
+        "intermediate"
+      ],
+      "description": "Search ranking features per query.",
+      "config": {
+        "materialized": "table",
+        "meta": {
+          "owner": "Search"
+        },
+        "tags": [
+          "intermediate"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.stg_search",
+          "model.marketplace.stg_listings",
+          "model.marketplace.stg_events"
+        ]
+      }
+    },
+    "model.marketplace.int_messaging_health": {
+      "unique_id": "model.marketplace.int_messaging_health",
+      "resource_type": "model",
+      "name": "int_messaging_health",
+      "schema": "intermediate",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "intermediate",
+        "int_messaging_health"
+      ],
+      "path": "intermediate/int_messaging_health.sql",
+      "original_file_path": "models/intermediate/int_messaging_health.sql",
+      "tags": [
+        "intermediate"
+      ],
+      "description": "Messaging responsiveness metrics.",
+      "config": {
+        "materialized": "table",
+        "meta": {
+          "owner": "Marketplace"
+        },
+        "tags": [
+          "intermediate"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.stg_messages",
+          "model.marketplace.stg_users"
+        ]
+      }
+    },
+    "model.marketplace.int_funnel": {
+      "unique_id": "model.marketplace.int_funnel",
+      "resource_type": "model",
+      "name": "int_funnel",
+      "schema": "intermediate",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "intermediate",
+        "int_funnel"
+      ],
+      "path": "intermediate/int_funnel.sql",
+      "original_file_path": "models/intermediate/int_funnel.sql",
+      "tags": [
+        "intermediate"
+      ],
+      "description": "Search-to-booking conversion funnel.",
+      "config": {
+        "materialized": "table",
+        "meta": {
+          "owner": "Search"
+        },
+        "tags": [
+          "intermediate"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.stg_events",
+          "model.marketplace.stg_search",
+          "model.marketplace.stg_bookings"
+        ]
+      }
+    },
+    "model.marketplace.fct_payments": {
+      "unique_id": "model.marketplace.fct_payments",
+      "resource_type": "model",
+      "name": "fct_payments",
+      "schema": "analytics",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "marts",
+        "fct_payments"
+      ],
+      "path": "marts/fct_payments.sql",
+      "original_file_path": "models/marts/fct_payments.sql",
+      "tags": [
+        "marts"
+      ],
+      "description": "Payment facts — the daily settlement table.",
+      "config": {
+        "materialized": "incremental",
+        "meta": {
+          "owner": "Payments",
+          "sla": "04:00"
+        },
+        "tags": [
+          "marts"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.int_payments_enriched"
+        ]
+      }
+    },
+    "model.marketplace.fct_bookings": {
+      "unique_id": "model.marketplace.fct_bookings",
+      "resource_type": "model",
+      "name": "fct_bookings",
+      "schema": "analytics",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "marts",
+        "fct_bookings"
+      ],
+      "path": "marts/fct_bookings.sql",
+      "original_file_path": "models/marts/fct_bookings.sql",
+      "tags": [
+        "marts"
+      ],
+      "description": "Booking facts at transaction grain.",
+      "config": {
+        "materialized": "incremental",
+        "meta": {
+          "owner": "Payments",
+          "sla": "04:30"
+        },
+        "tags": [
+          "marts"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.int_booking_events",
+          "model.marketplace.int_payments_enriched"
+        ]
+      }
+    },
+    "model.marketplace.fct_search": {
+      "unique_id": "model.marketplace.fct_search",
+      "resource_type": "model",
+      "name": "fct_search",
+      "schema": "analytics",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "marts",
+        "fct_search"
+      ],
+      "path": "marts/fct_search.sql",
+      "original_file_path": "models/marts/fct_search.sql",
+      "tags": [
+        "marts"
+      ],
+      "description": "Search session facts.",
+      "config": {
+        "materialized": "incremental",
+        "meta": {
+          "owner": "Search",
+          "sla": "04:30"
+        },
+        "tags": [
+          "marts"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.int_search_ranking",
+          "model.marketplace.int_funnel"
+        ]
+      }
+    },
+    "model.marketplace.dim_listings": {
+      "unique_id": "model.marketplace.dim_listings",
+      "resource_type": "model",
+      "name": "dim_listings",
+      "schema": "analytics",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "marts",
+        "dim_listings"
+      ],
+      "path": "marts/dim_listings.sql",
+      "original_file_path": "models/marts/dim_listings.sql",
+      "tags": [
+        "marts"
+      ],
+      "description": "Listing dimension with quality metrics.",
+      "config": {
+        "materialized": "table",
+        "meta": {
+          "owner": "Marketplace",
+          "sla": "04:30"
+        },
+        "tags": [
+          "marts"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.int_listing_metrics",
+          "model.marketplace.int_host_performance"
+        ]
+      }
+    },
+    "model.marketplace.dim_users": {
+      "unique_id": "model.marketplace.dim_users",
+      "resource_type": "model",
+      "name": "dim_users",
+      "schema": "analytics",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "marts",
+        "dim_users"
+      ],
+      "path": "marts/dim_users.sql",
+      "original_file_path": "models/marts/dim_users.sql",
+      "tags": [
+        "marts"
+      ],
+      "description": "User dimension with engagement.",
+      "config": {
+        "materialized": "table",
+        "meta": {
+          "owner": "Core Data",
+          "sla": "04:00"
+        },
+        "tags": [
+          "marts"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.int_user_sessions",
+          "model.marketplace.stg_users"
+        ]
+      }
+    },
+    "model.marketplace.mart_revenue_daily": {
+      "unique_id": "model.marketplace.mart_revenue_daily",
+      "resource_type": "model",
+      "name": "mart_revenue_daily",
+      "schema": "analytics",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "marts",
+        "mart_revenue_daily"
+      ],
+      "path": "marts/mart_revenue_daily.sql",
+      "original_file_path": "models/marts/mart_revenue_daily.sql",
+      "tags": [
+        "marts"
+      ],
+      "description": "Daily revenue report — the flagship finance dataset.",
+      "config": {
+        "materialized": "table",
+        "meta": {
+          "owner": "Payments",
+          "sla": "05:00"
+        },
+        "tags": [
+          "marts"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.fct_bookings",
+          "model.marketplace.fct_payments"
+        ]
+      }
+    },
+    "model.marketplace.mart_host_dashboard": {
+      "unique_id": "model.marketplace.mart_host_dashboard",
+      "resource_type": "model",
+      "name": "mart_host_dashboard",
+      "schema": "analytics",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "marts",
+        "mart_host_dashboard"
+      ],
+      "path": "marts/mart_host_dashboard.sql",
+      "original_file_path": "models/marts/mart_host_dashboard.sql",
+      "tags": [
+        "marts"
+      ],
+      "description": "Powers the host-facing performance dashboard.",
+      "config": {
+        "materialized": "table",
+        "meta": {
+          "owner": "Marketplace",
+          "sla": "05:00"
+        },
+        "tags": [
+          "marts"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.dim_listings",
+          "model.marketplace.int_host_performance",
+          "model.marketplace.fct_bookings"
+        ]
+      }
+    },
+    "model.marketplace.mart_marketplace_health": {
+      "unique_id": "model.marketplace.mart_marketplace_health",
+      "resource_type": "model",
+      "name": "mart_marketplace_health",
+      "schema": "analytics",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "marts",
+        "mart_marketplace_health"
+      ],
+      "path": "marts/mart_marketplace_health.sql",
+      "original_file_path": "models/marts/mart_marketplace_health.sql",
+      "tags": [
+        "marts"
+      ],
+      "description": "Marketplace health and conversion overview.",
+      "config": {
+        "materialized": "table",
+        "meta": {
+          "owner": "Search",
+          "sla": "05:00"
+        },
+        "tags": [
+          "marts"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.fct_search",
+          "model.marketplace.int_messaging_health",
+          "model.marketplace.int_funnel"
+        ]
+      }
+    },
+    "model.marketplace.mart_executive_summary": {
+      "unique_id": "model.marketplace.mart_executive_summary",
+      "resource_type": "model",
+      "name": "mart_executive_summary",
+      "schema": "analytics",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "marts",
+        "mart_executive_summary"
+      ],
+      "path": "marts/mart_executive_summary.sql",
+      "original_file_path": "models/marts/mart_executive_summary.sql",
+      "tags": [
+        "marts"
+      ],
+      "description": "Top-level executive KPIs across the business.",
+      "config": {
+        "materialized": "table",
+        "meta": {
+          "owner": "Core Data",
+          "sla": "05:30"
+        },
+        "tags": [
+          "marts"
+        ]
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "model.marketplace.mart_revenue_daily",
+          "model.marketplace.mart_host_dashboard",
+          "model.marketplace.dim_users"
+        ]
+      }
+    }
+  },
+  "sources": {
+    "source.marketplace.raw.events": {
+      "unique_id": "source.marketplace.raw.events",
+      "resource_type": "source",
+      "name": "events",
+      "source_name": "raw",
+      "schema": "raw",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "raw",
+        "events"
+      ],
+      "tags": [
+        "source"
+      ],
+      "description": "Raw clickstream events from the web and mobile apps.",
+      "config": {
+        "meta": {
+          "owner": "Core Data"
+        }
+      },
+      "meta": {
+        "owner": "Core Data"
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": []
+      }
+    },
+    "source.marketplace.raw.bookings": {
+      "unique_id": "source.marketplace.raw.bookings",
+      "resource_type": "source",
+      "name": "bookings",
+      "source_name": "raw",
+      "schema": "raw",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "raw",
+        "bookings"
+      ],
+      "tags": [
+        "source"
+      ],
+      "description": "Raw booking transactions from the reservations service.",
+      "config": {
+        "meta": {
+          "owner": "Payments"
+        }
+      },
+      "meta": {
+        "owner": "Payments"
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": []
+      }
+    },
+    "source.marketplace.raw.listings": {
+      "unique_id": "source.marketplace.raw.listings",
+      "resource_type": "source",
+      "name": "listings",
+      "source_name": "raw",
+      "schema": "raw",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "raw",
+        "listings"
+      ],
+      "tags": [
+        "source"
+      ],
+      "description": "Raw listing inventory snapshots.",
+      "config": {
+        "meta": {
+          "owner": "Marketplace"
+        }
+      },
+      "meta": {
+        "owner": "Marketplace"
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": []
+      }
+    },
+    "source.marketplace.raw.users": {
+      "unique_id": "source.marketplace.raw.users",
+      "resource_type": "source",
+      "name": "users",
+      "source_name": "raw",
+      "schema": "raw",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "raw",
+        "users"
+      ],
+      "tags": [
+        "source"
+      ],
+      "description": "Raw user account records.",
+      "config": {
+        "meta": {
+          "owner": "Core Data"
+        }
+      },
+      "meta": {
+        "owner": "Core Data"
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": []
+      }
+    },
+    "source.marketplace.raw.payments": {
+      "unique_id": "source.marketplace.raw.payments",
+      "resource_type": "source",
+      "name": "payments",
+      "source_name": "raw",
+      "schema": "raw",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "raw",
+        "payments"
+      ],
+      "tags": [
+        "source"
+      ],
+      "description": "Settlement feed from the external payment processor.",
+      "config": {
+        "meta": {
+          "owner": "Payments"
+        }
+      },
+      "meta": {
+        "owner": "Payments"
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": []
+      }
+    },
+    "source.marketplace.raw.reviews": {
+      "unique_id": "source.marketplace.raw.reviews",
+      "resource_type": "source",
+      "name": "reviews",
+      "source_name": "raw",
+      "schema": "raw",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "raw",
+        "reviews"
+      ],
+      "tags": [
+        "source"
+      ],
+      "description": "Raw guest and host reviews.",
+      "config": {
+        "meta": {
+          "owner": "Marketplace"
+        }
+      },
+      "meta": {
+        "owner": "Marketplace"
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": []
+      }
+    },
+    "source.marketplace.raw.messages": {
+      "unique_id": "source.marketplace.raw.messages",
+      "resource_type": "source",
+      "name": "messages",
+      "source_name": "raw",
+      "schema": "raw",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "raw",
+        "messages"
+      ],
+      "tags": [
+        "source"
+      ],
+      "description": "Raw guest-host messaging threads.",
+      "config": {
+        "meta": {
+          "owner": "Marketplace"
+        }
+      },
+      "meta": {
+        "owner": "Marketplace"
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": []
+      }
+    },
+    "source.marketplace.raw.search_logs": {
+      "unique_id": "source.marketplace.raw.search_logs",
+      "resource_type": "source",
+      "name": "search_logs",
+      "source_name": "raw",
+      "schema": "raw",
+      "database": "analytics",
+      "fqn": [
+        "marketplace",
+        "raw",
+        "search_logs"
+      ],
+      "tags": [
+        "source"
+      ],
+      "description": "Raw search and ranking impression logs.",
+      "config": {
+        "meta": {
+          "owner": "Search"
+        }
+      },
+      "meta": {
+        "owner": "Search"
+      },
+      "depends_on": {
+        "macros": [],
+        "nodes": []
+      }
+    }
+  }
+}

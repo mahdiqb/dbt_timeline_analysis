@@ -1,0 +1,11 @@
+services:
+  dbt-sla-tracker:
+    build: .
+    image: dbt-sla-tracker
+    ports:
+      - "8080:8080"
+    # Mount a directory that holds your `config.yml` and your dbt artifacts
+    # (see config.example.yml). The server finds /data/config.yml on its own.
+    # Delete this whole `volumes:` block to just run the synthetic demo.
+    volumes:
+      - ./my-project:/data:ro

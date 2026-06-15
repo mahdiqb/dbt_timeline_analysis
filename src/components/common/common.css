@@ -1,0 +1,61 @@
+.status-dot {
+  display: inline-block;
+  border-radius: var(--r-pill);
+  flex: none;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 9px 0 8px;
+  border-radius: var(--r-pill);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.status-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--r-pill);
+}
+
+/* Generic segmented control. */
+.segmented {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  background: var(--panel-inset);
+  border-radius: var(--r-md);
+}
+
+.segmented__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 30px;
+  padding: 0 13px;
+  border-radius: var(--r-sm);
+  font-size: var(--text-base);
+  font-weight: var(--fw-medium);
+  color: var(--ink-2);
+  transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+
+.segmented__item:hover {
+  color: var(--ink);
+}
+
+.segmented__item--active {
+  background: var(--panel);
+  color: var(--ink);
+  font-weight: var(--fw-semibold);
+  box-shadow: var(--shadow-sm);
+}
+
+.segmented__item--active:hover {
+  color: var(--ink);
+}

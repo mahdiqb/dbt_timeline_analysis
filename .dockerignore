@@ -1,0 +1,17 @@
+node_modules
+dist
+dist-server
+fixtures
+docs
+.git
+.gitignore
+*.log
+.DS_Store
+README.md
+
+# user data & config — only ever provided via a volume mount, never baked in
+config.yml
+config.local.yml
+history
+artifacts
+my-project
