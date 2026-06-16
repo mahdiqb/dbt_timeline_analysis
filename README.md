@@ -372,13 +372,6 @@ docker-compose.yml        # one-command run; mount your project at /data
 - **SLAs are a convention, not a dbt feature.** Declare them in `config.yml` or via `meta.sla` — whichever fits how your team already records timeliness commitments.
 - **One project at a time.** No multi-project / multi-environment switching, no auth, no persistence — it's a focused visualization, not a platform.
 
-## If I kept going
-
-- Auto-refresh / a file-watcher so new runs appear on their own, without even clicking **Refresh** (the manual refresh is in; this is the hands-off version).
-- A dbt Cloud Discovery API connector.
-- Click an upstream node in the Timeline to re-focus the whole app on it.
-- Per-team / per-owner roll-ups (the data's already tagged with owners).
-
 ---
 
 Built as a study in doing one thing well: making "is my data on time, and if not, whose fault is it" answerable in a glance.
