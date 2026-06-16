@@ -252,11 +252,7 @@ models:
 
 …and the adapter reads `node.config.meta.sla` → `Sla.targetMinutes`.
 
-The key idea to keep straight: every time in the app is **"minutes after the run's reference midnight."** Each `ProjectRun.date` is 00:00 of that run's logical day; landing/start are offsets from it. So pick a reference timezone (the app *formats* in UTC) and anchor consistently.
-
-### Getting 30 days of history
-
-One `run_results.json` only describes the *latest* invocation. To get the 30-day history the Historical & Report views want, you persist each daily run's artifacts and load them as a series. In practice that's a one-liner in your orchestrator — after `dbt build`, upload `target/manifest.json` + `target/run_results.json` to S3/GCS keyed by date. The adapter then reads the last N and sorts them into `runs[]` (chronological, newest last).
+The key idea to keep straight: every time in the app is **"minutes after the run's reference midnight."** Each `ProjectRun.date` is 00:00 of that run's logical day; landing/start are offsets from it. So pick a reference timezone (the app *formats* in UTC) and anchor consistently. (`history` is just the runs in order, oldest → newest.)
 
 ### Where the app gets its data (the seam)
 
@@ -279,89 +275,7 @@ export const project = injectedProject() ?? loadProjectFromFixtures();
 
 ### The adapter
 
-It's a real module now — `src/data/loadProject.ts` — and the shape of it is exactly this mechanical mapping. The snippet below is lightly simplified; the actual file also folds in `sources.json` for source arrival times, handles skipped/errored nodes that have no `execute` timing (falls back to the run's midnight), and aliases dbt's `pass`/`fail` statuses:
-
-```ts
-// src/data/loadProject.ts
-import type {
-  DbtProject, DbtModel, ProjectRun, ModelRun, Sla, ModelLayer,
-} from "@/types/dbt";
-
-// You supply these: parsed JSON for each day's run.
-type Manifest = { nodes: Record<string, any>; sources: Record<string, any> };
-type RunResults = { metadata: { generated_at: string }; results: any[] };
-
-const layerOf = (node: any): ModelLayer =>
-  node.resource_type === "source" ? "source"
-  : /(^|\.)stg_|\/staging\//.test(node.fqn?.join(".") ?? node.path) ? "staging"
-  : /(^|\.)int_|\/intermediate\//.test(node.fqn?.join(".") ?? node.path) ? "intermediate"
-  : "marts";
-
-const hhmmToMinutes = (s: string) => {
-  const [h, m] = s.split(":").map(Number);
-  return h * 60 + m;
-};
-
-export function loadProject(
-  manifest: Manifest,
-  history: RunResults[],          // one per day, oldest → newest
-): DbtProject {
-  const nodes = { ...manifest.sources, ...manifest.nodes };
-
-  const models: DbtModel[] = Object.values(nodes)
-    .filter((n: any) => n.resource_type === "model" || n.resource_type === "source")
-    .map((n: any) => ({
-      uniqueId: n.unique_id,
-      name: n.name,
-      layer: layerOf(n),
-      materialization: n.config?.materialized ?? "source",
-      schema: n.schema,
-      owner: n.config?.meta?.owner ?? n.group ?? "—",
-      tags: n.tags ?? [],
-      description: n.description ?? "",
-      dependsOn: n.depends_on?.nodes ?? [],
-    }));
-
-  const slas: Record<string, Sla> = {};
-  for (const n of Object.values<any>(nodes)) {
-    const sla = n.config?.meta?.sla;
-    if (sla) {
-      slas[n.unique_id] = {
-        uniqueId: n.unique_id,
-        targetMinutes: hhmmToMinutes(sla),
-        label: `${sla} UTC`,
-      };
-    }
-  }
-
-  const runs: ProjectRun[] = history.map((rr) => {
-    const day = new Date(rr.metadata.generated_at);
-    const date = Date.UTC(day.getUTCFullYear(), day.getUTCMonth(), day.getUTCDate());
-    const results: Record<string, ModelRun> = {};
-    for (const r of rr.results) {
-      const exec = r.timing?.find((t: any) => t.name === "execute");
-      results[r.unique_id] = {
-        uniqueId: r.unique_id,
-        status: r.status === "success" || r.status === "pass" ? "success"
-              : r.status === "skipped" ? "skipped" : "error",
-        startedAt: exec ? Date.parse(exec.started_at) : date,
-        completedAt: exec ? Date.parse(exec.completed_at) : date,
-        executionSeconds: r.execution_time ?? 0,
-        rowsAffected: r.adapter_response?.rows_affected ?? null,
-      };
-    }
-    return { runId: rr.metadata.generated_at, date, startedAt: date, results };
-  });
-
-  // index helpers (modelsById, childrenOf) — same as generate.ts
-  const modelsById = Object.fromEntries(models.map((m) => [m.uniqueId, m]));
-  const childrenOf: Record<string, string[]> = {};
-  for (const m of models) childrenOf[m.uniqueId] = [];
-  for (const m of models) for (const p of m.dependsOn) childrenOf[p]?.push(m.uniqueId);
-
-  return { name: "your_project", models, modelsById, childrenOf, slas, runs };
-}
-```
+`src/data/loadProject.ts` is that table made real — `loadProject(manifest, history)` → `DbtProject`, a mechanical, dependency-free transform. The only fiddly parts: sources arrive via `sources.json`'s `max_loaded_at` rather than a run, skipped/errored nodes with no `execute` timing fall back to the run's midnight, and dbt's `pass`/`fail` statuses get aliased. It's commented top to bottom, so read it there rather than a paraphrase here.
 
 ### Try it on the sample artifacts
 
